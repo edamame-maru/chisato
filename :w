@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void draw(int* board int* komadai_sente, int* komadai_gote) {
+	for (int i = 0; i < 7; ++i) {
+		printf("%d", *(komadai_sente + i));
+	}
+	putchar('\n');
+
+	for (int i = 0; i < 7; ++i) {
+		printf("%d", *(komadai_sente + i));
+	}
+	putchar('\n');
+}
+
+int main() {
+	int board[9][9];
+	int komadai_sente[7];
+	int komadai_gote[7];
+
+	for (int i = 0; i < 9; ++i) {
+		for (int j = 0; j < 9; ++j) {
+			board[i][j] = 0;
+		}
+	}
+
+	return 0;
+}
