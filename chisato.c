@@ -49,7 +49,7 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 			printf("%d ", komadai_sente[i]);
 		}
 	}
-	putchar('\n');
+	printf("%s", "\n\n");
 
 	/* 盤を表示 */
 	for (int i = 0; i < 9; ++i) {
@@ -185,16 +185,17 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 			printf("%d ", komadai_gote[i]);
 		}
 	}
-	putchar('\n');
+	printf("%s", "\n\n");
 }
 
 int main() {
 	int board[9][9];
 	for (int i = 0; i < 9; ++i) {
 		for (int j = 0; j < 9; ++j) {
-			*(*(board + i) + j) = 0;
+			board[i][j] = 0;
 		}
 	}
+
 
 	int komadai_sente[7] = {6, 5, 4, 5, 0, 4, 0};
 	int komadai_gote[7] = {0, 0, 0, 3, 4, 2, 3};
