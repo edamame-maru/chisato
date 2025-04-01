@@ -2,7 +2,7 @@
 # See LICENSE file for copyright and license details.
 
 CC = cc
-CFLAGS = -std=c17 -pedantic -Wall -Wextra
+CFLAGS = -std=c17 -pedantic -Wall -Wextra -static
 
 all: chisato
 
