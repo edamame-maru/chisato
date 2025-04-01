@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_sente_turn) {
@@ -9,14 +10,43 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 
 	/* 手番を表示 */
 	if (is_sente_turn) {
-		puts("手番：先手");
+		printf("%s", "手番：先手\n");
 	} else {
-		puts("手番：後手");
+		printf("%s", "手番：後手\n");
 	}
 
 	/* 先手の駒台を表示 */
 	for (int i = 0; i < 7; ++i) {
-		printf("%d ", komadai_sente[i]);
+		if (komadai_sente[i] > 0) {
+			switch (i) {
+				case 0:
+					printf("%s", "歩");
+					break;
+				case 1:
+					printf("%s", "香");
+					break;
+				case 2:
+					printf("%s", "桂");
+					break;
+				case 3:
+					printf("%s", "銀");
+					break;
+				case 4:
+					printf("%s", "金");
+					break;
+				case 5:
+					printf("%s", "角");
+					break;
+				case 6:
+					printf("%s", "飛");
+					break;
+				default:
+					puts("ERR: invalid value in komadai_sente[7]");
+					exit(1);
+					break;
+			}
+			printf("%d ", komadai_sente[i]);
+		}
 	}
 	putchar('\n');
 
@@ -30,7 +60,36 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 
 	/* 後手の駒台を表示 */
 	for (int i = 0; i < 7; ++i) {
-		printf("%d ", komadai_gote[i]);
+		if (komadai_gote[i] > 0) {
+			switch (i) {
+				case 0:
+					printf("%s", "歩");
+					break;
+				case 1:
+					printf("%s", "香");
+					break;
+				case 2:
+					printf("%s", "桂");
+					break;
+				case 3:
+					printf("%s", "銀");
+					break;
+				case 4:
+					printf("%s", "金");
+					break;
+				case 5:
+					printf("%s", "角");
+					break;
+				case 6:
+					printf("%s", "飛");
+					break;
+				default:
+					puts("ERR: invalid value in komadai_gote[7]");
+					exit(1);
+					break;
+			}
+			printf("%d ", komadai_gote[i]);
+		}
 	}
 	putchar('\n');
 }
@@ -43,13 +102,9 @@ int main() {
 		}
 	}
 
-	int komadai_sente[7];
-	int komadai_gote[7];
+	int komadai_sente[7] = {6, 5, 4, 5, 0, 4, 0};
+	int komadai_gote[7] = {0, 0, 0, 3, 4, 2, 3};
 
-	for (int i = 0; i < 7; ++i) {
-		komadai_sente[i] = 0;
-		komadai_gote[i] = 0;
-	}
 
 	draw(board, komadai_sente, komadai_gote, true);
 	return 0;
