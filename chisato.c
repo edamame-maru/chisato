@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
 void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_sente_turn) {
 	/* 画面をクリア */
 	for (int i = 0; i < 100; ++i) {
@@ -10,9 +11,9 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 
 	/* 手番を表示 */
 	if (is_sente_turn) {
-		printf("%s", "手番：先手\n");
+		printf("%s", "手番：▲先手\n");
 	} else {
-		printf("%s", "手番：後手\n");
+		printf("%s", "手番：△後手\n");
 	}
 
 	/* 先手の駒台を表示 */
@@ -188,7 +189,13 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 	printf("%s", "\n\n");
 }
 
+void move(int board[9][9], int start_x, int start_y, int dest_x, int dest_y) {
+	board[dest_x][dest_y] = board[start_x][start_y];
+	board[start_x][start_y] = 0;
+}
+
 int main() {
+	/* 初期配置*/
 	int board[9][9] = {
 		{-2, -3, -4, -5, -8, -5, -4, -3, -2},
 		{0, -7, 0, 0, 0, 0, 0, -6, 0},
