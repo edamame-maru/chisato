@@ -189,17 +189,25 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 }
 
 int main() {
-	int board[9][9];
-	for (int i = 0; i < 9; ++i) {
-		for (int j = 0; j < 9; ++j) {
-			board[i][j] = 0;
-		}
+	int board[9][9] = {
+		{-2, -3, -4, -5, -8, -5, -4, -3, -2},
+		{0, -7, 0, 0, 0, 0, 0, -6, 0},
+		{-1, -1, -1, -1, -1, -1, -1, -1, -1},
+		{0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{0, 6, 0, 0, 0, 0, 0, 7, 0},
+		{2, 3, 4, 5, 8, 5, 4, 3, 2},
+	};
+
+	int komadai_sente[7];
+	int komadai_gote[7];
+
+	for (int i = 0; i < 7; ++i) {
+		komadai_sente[i] = 0;
+		komadai_gote[i] = 0;
 	}
-
-
-	int komadai_sente[7] = {6, 5, 4, 5, 0, 4, 0};
-	int komadai_gote[7] = {0, 0, 0, 3, 4, 2, 3};
-
 
 	draw(board, komadai_sente, komadai_gote, true);
 	exit(0);
