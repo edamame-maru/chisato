@@ -1,11 +1,8 @@
 # chisato
 Linuxで動くコンソール将棋プログラム
 
-## Installation
+## Install 
 
-1. Clone the repository.
-2. Run:
+1. Clone the repo.
+2. ``` sudo make install ```. If in doubt, consult the Makefile.
 
-```
-sudo make install
-```
