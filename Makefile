@@ -7,7 +7,7 @@ CFLAGS = -std=c17 -pedantic -Wall -Wextra -static
 all: chisato
 
 chisato: chisato.c
-	${CC} chisato.c -o chisato ${CFLAGS}
+	$(CC) chisato.c -o chisato $(CFLAGS)
 
 clean:
 	rm -f chisato
