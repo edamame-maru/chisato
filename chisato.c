@@ -2,23 +2,29 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_sente_turn) {
-	/* 画面をクリア */
-	for (int i = 0; i < 100; ++i) {
+void wipe(int n) {
+	for (int i = 0; i < n; ++i) {
 		putchar('\n');
 	}
+}
 
-	/* 手番を表示 */
+void draw_turn(bool is_sente_turn) {
 	if (is_sente_turn) {
 		printf("%s", "手番：▲先手\n");
 	} else {
 		printf("%s", "手番：△後手\n");
 	}
+}
 
-	/* 先手の駒台を表示 */
-	printf("%s", "先手駒台：");
+void draw_komadai(int komadai[7], bool is_sente_owned) {
+	if (is_sente_owned) {
+		printf("%s", "先手駒台：");
+	} else {
+		printf("%s", "後手駒台：");
+	}
+
 	for (int i = 0; i < 7; ++i) {
-		if (komadai_sente[i] > 0) {
+		if (komadai[i] > 0) {
 			switch (i) {
 				case 0:
 					printf("%s", "歩");
@@ -42,16 +48,17 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 					printf("%s", "飛");
 					break;
 				default:
-					puts("ERR: invalid value in komadai_sente[7]");
+					puts("ERR: invalid value in komadai[7]");
 					exit(1);
 					break;
 			}
-			printf("%d ", komadai_sente[i]);
+			printf("%d ", komadai[i]);
 		}
 	}
 	printf("%s", "\n\n");
+}
 
-	/* 盤を表示 */
+void draw_board(int board[9][9]) {
 	for (int i = 0; i < 9; ++i) {
 		for (int j = 0; j < 9; ++j) {
 			switch (board[i][j]) {
@@ -150,42 +157,6 @@ void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_se
 		}
 		printf("%s", "\n\n");
 	}
-
-	/* 後手の駒台を表示 */
-	printf("%s", "後手駒台：");
-	for (int i = 0; i < 7; ++i) {
-		if (komadai_gote[i] > 0) {
-			switch (i) {
-				case 0:
-					printf("%s", "歩");
-					break;
-				case 1:
-					printf("%s", "香");
-					break;
-				case 2:
-					printf("%s", "桂");
-					break;
-				case 3:
-					printf("%s", "銀");
-					break;
-				case 4:
-					printf("%s", "金");
-					break;
-				case 5:
-					printf("%s", "角");
-					break;
-				case 6:
-					printf("%s", "飛");
-					break;
-				default:
-					puts("ERR: invalid value in komadai_gote[7]");
-					exit(1);
-					break;
-			}
-			printf("%d ", komadai_gote[i]);
-		}
-	}
-	printf("%s", "\n\n");
 }
 
 void move(int board[9][9], int start_x, int start_y, int dest_x, int dest_y) {
@@ -195,7 +166,7 @@ void move(int board[9][9], int start_x, int start_y, int dest_x, int dest_y) {
 
 int main() {
 	/* 初期配置*/
-	int board[9][9] = {
+	int my_board[9][9] = {
 		{-2, -3, -4, -5, -8, -5, -4, -3, -2},
 		{0, -7, 0, 0, 0, 0, 0, -6, 0},
 		{-1, -1, -1, -1, -1, -1, -1, -1, -1},
@@ -215,6 +186,10 @@ int main() {
 		komadai_gote[i] = 0;
 	}
 
-	draw(board, komadai_sente, komadai_gote, true);
+	wipe(100);
+	draw_turn(true);
+	draw_komadai(komadai_sente, true);
+	draw_board(my_board);
+	draw_komadai(komadai_gote, false);
 	exit(0);
 }
