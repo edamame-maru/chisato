@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-
 void draw(int board[9][9], int komadai_sente[7], int komadai_gote[7], bool is_sente_turn) {
 	/* 画面をクリア */
 	for (int i = 0; i < 100; ++i) {
