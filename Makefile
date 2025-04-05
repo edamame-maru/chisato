@@ -4,10 +4,10 @@
 CC = cc
 CFLAGS = -std=c17 -pedantic -Wall -Wextra -static
 
-all: chisato
+.PHONY: clean
 
 chisato: chisato.c
 	$(CC) chisato.c -o chisato $(CFLAGS)
 
 clean:
-	rm -f chisato
+	$(RM) chisato
